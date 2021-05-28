@@ -6,10 +6,8 @@ import datetime
 # Initializes your app with your bot token and signing secret
 # channel_id = "get-the-permission-first" #bot-builder
 app = App(
-    #token=os.environ.get("SLACK_BOT_TOKEN"),
-    token="xoxb-11839357478-2109182338389-I2cGdHt0KchxklJKFwE6KMGf",
-    signing_secret="aa3dcf304d7e6a5fcebcfdc237722ffe"
-    #signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
+    token=os.environ.get("SLACK_BOT_TOKEN"),
+    signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
 )
 channel_id = "C01TLCQBKQS"  # lgbtqia-and-allies
 

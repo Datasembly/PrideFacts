@@ -6,6 +6,18 @@ Hi, I'm a SlackBot that pulls from a shared PrideFact database (it's a Google Sh
 
 ## Parts
 
+### Credentials
+Go to 1password and look under Engineering
+There'll be a thing that says "PrideFacts credentials"
+
+Download the files there and put them in the root directory.
+Also grab the environment variables listed there and put them in your environment.
+(DM me if you need help!)
+
++ TODO(?) : Maybe find the 1password api and try to automate this.
+
+current token is broken because i broke something. - li; will fix soon? (pls help dan)
+
 ### pridefact_db.py
 
 Makes a call to the Google Sheets api to grab a random fact.
