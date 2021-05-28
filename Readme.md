@@ -21,7 +21,7 @@ DM me... I'll try to help.
 https://docs.google.com/spreadsheets/d/1_9G6G8HdTzZkdBBZNolHH0j23c1qIrhhiiTSYvmsUpw/edit?usp=sharing
 
 The sheets are set up as a monolith (so everyone can contribute facts).
-TODO (?): Create categories of facts and get a way to add flags to grab specific types of facts
++ TODO (?): Create categories of facts and get a way to add flags to grab specific types of facts
 
 Let's talk about it!
 
@@ -32,9 +32,9 @@ We might find a use for the other columns, but the script only reads from column
 ### app.py
 The actual slackbot-- uses Bolt python. Makes a call to pridefact_db for a random fact and then posts it to the #lgbtqia_and_allies channel.
 
-TODO: Make into cron job? Or schedule info into the future?
-TODO: Set it up to take extra arguments so we can get access to new information or more interactibility.
-TODO: Make sure it comes with a memorial for all of the time memorialized by this.
++ TODO: Make into cron job? Or schedule info into the future?
++ TODO: Set it up to take extra arguments so we can get access to new information or more interactibility.
++ TODO: Make sure it comes with a memorial for all of the time memorialized by this.
 
 #### Install and Contribute?
 I forgot to create a requirements.txt
@@ -44,7 +44,8 @@ DM Me but it'll also be in the Slack Apps directory if you're a collaborator (DM
 
 ### Documentation
 I was a little careless and forgot to document stuff. I'd really like help fleshing this out!
-(TODO TODO TODO)
++ _(TODO TODO TODO)_
+
 -- This is Li signing out.
 
 Thanks!
