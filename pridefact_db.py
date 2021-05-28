@@ -1,22 +1,24 @@
 from __future__ import print_function
 import os.path
 import random
-from googleapiclient.discovery import build
+from googleapiclient.discovery import build # Make sure this is installed.
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
+# Constants for convenience.
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-
-# The ID and range of a sample spreadsheet.
+# The sheet we're pulling facts from. This is the id.
 pridefacts_data = '1_9G6G8HdTzZkdBBZNolHH0j23c1qIrhhiiTSYvmsUpw'
 
 
+# Set up with the assumption that facts will always b e in column A.
+# Is set up so that we can categorize facts by sheets if wanted in the future
+# Always return a random fact though.
 def random_fact(service, facttype="Sheet1"):
     # facttype chooses which sheet to reference from
     facts = '{}!A:A'.format(facttype)
-
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=pridefacts_data,
                                 range=facts).execute()
@@ -24,6 +26,8 @@ def random_fact(service, facttype="Sheet1"):
     return random.choice(values)[0]
 
 
+# Abstraction to create a service connector to Google services
+# This is just code from the quickstart code example
 def make_service():
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
@@ -42,10 +46,8 @@ def make_service():
     return service
 
 
+# The main function actually creates the service and then uses it to find a random fact.
 def main():
-    """Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
-    """
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -54,5 +56,6 @@ def main():
     return random_fact(service)
 
 
+# Easy debugs
 if __name__ == '__main__':
     print(main())

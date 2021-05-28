@@ -1,39 +1,42 @@
 import os
-# Use the package we installed
-from slack_bolt import App, logger
-import pridefact_db
+from slack_bolt import App # Make sure you have this and datetime installed
 import datetime
-# Initializes your app with your bot token and signing secret
-# channel_id = "get-the-permission-first" #bot-builder
-app = App(
-    token=os.environ.get("SLACK_BOT_TOKEN"),
-    signing_secret=os.environ.get("SLACK_SIGNING_SECRET")
-)
-channel_id = "C01TLCQBKQS"  # lgbtqia-and-allies
+import pridefact_db # Grabs the auto random fact
 
-def makeFutureTime(minutes):
+# Initializes your app with your bot token and signing secret
+# Constants for ease of use. Feel free to abstract
+app = App(
+    token=os.environ.get("SLACK_BOT_TOKEN"), # Make sure you have these environment vars
+    signing_secret=os.environ.get("SLACK_SIGNING_SECRET") # Or replace with appropriate values
+)
+channel_id = "C01TLCQBKQS"  # The id for lgbtqia-and-allies
+
+
+# TODO (incomplete)
+# For scheduling a series of posts in the future.
+# Haven't finangled the thing yet, but it's definitely possible.
+def make_future_time(minutes):
 # Create a timestamp for tomorrow at 9AM
     tomorrow = datetime.datetime.now() + datetime.timedelta(minutes=minutes)
     scheduled_time = datetime.time()
     newdate = datetime.datetime.combine(tomorrow, scheduled_time).strftime('%s')
     print(newdate)
     return newdate
-# Channel you want to post message to
-def makeSchedule():
-    schedule_timestamp = makeFutureTime(25)
+
+# Takes a time in the future and sets a random message.
+# Will be broken until make_future_time is done.
+def make_scheduled_message():
+    schedule_timestamp = make_future_time(25)
     # Call the chat.scheduleMessage method using the WebClient
     result = app.client.chat_scheduleMessage(
         channel=channel_id,
         text=pridefact_db.main(),
         post_at=schedule_timestamp
     )
-    # Log the result
-#    logger.info(result)
 
 
 result = app.client.chat_postMessage(
     channel=channel_id,
     text=pridefact_db.main()
 )
-#logger.info(result)
 print(result)
