@@ -23,20 +23,19 @@ def make_future_time(minutes):
     print(newdate)
     return newdate
 
-# Takes a time in the future and sets a random message.
-# Will be broken until make_future_time is done.
-def make_scheduled_message():
-    schedule_timestamp = make_future_time(25)
-    # Call the chat.scheduleMessage method using the WebClient
-    result = app.client.chat_scheduleMessage(
-        channel=channel_id,
-        text=pridefact_db.main(),
-        post_at=schedule_timestamp
+
+def post(channel, txt, future=None):
+    # If future = None, just post right away
+    # future takes a datetime object representing the future.
+    # Try finishing make_future_time so we don't have to do this by hand.
+    result = app.client.chat_postMessage(
+        channel=channel,
+        text=txt
+    ) if future is None else app.client.chat_postMessage(
+        channel=channel,
+        text=txt,
+        post_at=future
     )
+    print(result)
 
-
-result = app.client.chat_postMessage(
-    channel=channel_id,
-    text=pridefact_db.main()
-)
-print(result)
+post(channel_id, pridefact_db.main())
