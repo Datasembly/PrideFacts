@@ -16,7 +16,6 @@ channel_id = "C01TLCQBKQS"  # The id for lgbtqia-and-allies
 # For scheduling a series of posts in the future.
 # Haven't finangled the thing yet, but it's definitely possible.
 def make_future_time(minutes):
-# Create a timestamp for tomorrow at 9AM
     tomorrow = datetime.datetime.now() + datetime.timedelta(minutes=minutes)
     scheduled_time = datetime.time()
     newdate = datetime.datetime.combine(tomorrow, scheduled_time).strftime('%s')
@@ -24,7 +23,7 @@ def make_future_time(minutes):
     return newdate
 
 
-def post(channel, txt, future=None):
+def post(txt, future=None, channel="C01TLCQBKQS"):
     # If future = None, just post right away
     # future takes a datetime object representing the future.
     # Try finishing make_future_time so we don't have to do this by hand.
@@ -38,4 +37,5 @@ def post(channel, txt, future=None):
     )
     print(result)
 
-post(channel_id, pridefact_db.main())
+
+post(pridefact_db.main())
